@@ -1,0 +1,40 @@
+<!-- templates/home.html-->
+
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="col-md-12">
+            {% if user.is_authenticated %}
+              Hi {{ user.username }}!
+               <p>
+                   <a href="{%  url 'weatherhome' %}"> Click To weather add</a>
+               </p>
+
+              <p><a href="{% url 'logout' %}">Log Out</a></p>
+            {% else %}
+                <div class="container">
+                    <div class="col-md-6">
+                        <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Login here</h5>
+                            <a href="{% url 'login' %}" class="card-linkx">Log In</a>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Register here</h5>
+                            <a class="card-link" href="{% url 'register' %}">Register Here</a>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
